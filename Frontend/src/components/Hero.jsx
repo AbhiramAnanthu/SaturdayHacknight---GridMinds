@@ -10,7 +10,7 @@ const Hero = () => {
     <>
     <div className='flex justify-center items-center h-screen bg-[url("https://img.freepik.com/free-photo/galactic-night-sky-astronomy-science-combined-generative-ai_188544-9656.jpg?semt=ais_hybrid")] overflow-auto pt-[70px] bg-cover bg-no-repeat bg-center bg-fixed'>
       {data ? (
-        <div><Asteroids/>
+        <div className='mt-[340px]'><Asteroids/>
         <Asteroids/>
         <Asteroids/>
         <Asteroids/>
