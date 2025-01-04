@@ -12,7 +12,7 @@ An Asteroid Tracker System allows users to monitor approaching asteroids by prov
 2. [Kevin L](https://github.com/Blackeye6941)
 3. [Akshay M Nair](https://github.com/Mobing-ms)
 ## Link to product walkthrough
-[link to video](Link Here)
+[link to video](https://drive.google.com/file/d/1nLomZdrSqBXw3jwowBW1Bhv5bM7rXuvK/view?usp=sharing)
 ## How it Works ?
 1. **User Input**: The user provides a starting and ending date through the website to define the time range for tracking asteroids.  
 
@@ -29,6 +29,16 @@ An Asteroid Tracker System allows users to monitor approaching asteroids by prov
      1. React
      2. Tailwind CSS
 ## How to configure
-
+- git clone "https://github.com/AbhiramAnanthu/SaturdayHacknight---GridMinds"
+- cd backend
 ## How to Run
-Instructions for running
+- run python app.py
+- use postman
+- Create a HTTP request
+- GET "http:localhost:5000/get-asteroids" and json body {"start_date":"yyyy-mm-dd","end_date":"yyyy-mm-dd"}
+- POST "http://127.0.0.1:5000/create-schedule-message" and json body
+     {
+        "phone_number": "+91 8547376353",
+        "date_time": "2025,1,5,10,00", 
+        "id": "3704144"
+     }
