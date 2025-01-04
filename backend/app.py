@@ -16,7 +16,7 @@ TWILIO_AUTH_TOKEN = os.getenv("AUTH_TOKEN")
 PHONE_NUMBER = os.getenv("PHONE_NUMBER")
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
@@ -28,9 +28,9 @@ def index_page():
 
 @app.route("/get-asteroids", methods=["GET"])
 def get_asteroids():
-    start_date = request.args.get("start_date")
-    end_date = request.args.get("end_date")
-
+    data = request.get_json()
+    start_date = data["start_date"]
+    end_date = data["end_date"]
     url = f"https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={API_KEY}"
 
     response = requests.get(url).json()
@@ -41,8 +41,7 @@ def get_asteroids():
         for asteroid in asteroids:
             asteroid_id = asteroid["id"]
             asteroid_name = asteroid.get("name", "No description available")
-
-            # Estimated diameter (size)
+            
             diameter_min = asteroid["estimated_diameter"]["meters"][
                 "estimated_diameter_min"
             ]
@@ -50,7 +49,6 @@ def get_asteroids():
                 "estimated_diameter_max"
             ]
 
-            # Check if asteroid is potentially hazardous
             is_potentially_hazardous = asteroid.get(
                 "is_potentially_hazardous_asteroid", False
             )
@@ -70,7 +68,6 @@ def get_asteroids():
                     "kilometers_per_hour"
                 ]
 
-                # Append detailed description for each asteroid approach
                 asteroid_details.append(
                     {
                         "id": asteroid_id,
