@@ -8,11 +8,14 @@ const Hero = () => {
 
   return (
     <>
-    <div className='flex justify-center items-center h-screen bg-[url("https://img.freepik.com/free-photo/galactic-night-sky-astronomy-science-combined-generative-ai_188544-9656.jpg?semt=ais_hybrid")] bg-cover bg-no-repeat bg-center'>
+    <div className='flex justify-center items-center h-screen bg-[url("https://img.freepik.com/free-photo/galactic-night-sky-astronomy-science-combined-generative-ai_188544-9656.jpg?semt=ais_hybrid")] bg-cover bg-no-repeat bg-center bg-fixed'>
       {data ? (
         <div><Asteroids/>
         <Asteroids/>
-        <Asteroids/></div>
+        <Asteroids/>
+        <Asteroids/>
+        <Asteroids/>
+        </div>
     )
       :
       (
