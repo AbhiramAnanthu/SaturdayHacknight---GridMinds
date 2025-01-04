@@ -1,14 +1,17 @@
 import React from 'react'
 import { useState } from 'react'
+import Asteroids from './Asteroids';
 
 
 const Hero = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState({});
 
   return (
     <>
       {data ? (
-        <div>Hello World</div>
+        <div><Asteroids/>
+        <Asteroids/>
+        <Asteroids/></div>
     )
       :
       (

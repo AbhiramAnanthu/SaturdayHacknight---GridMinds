@@ -8,9 +8,6 @@ const Home = () => {
     <>
       <NavBar/>
       <Hero/>
-      <Asteroids/>
-      <Asteroids/>
-      <Asteroids/>
     </>
   )
 }
