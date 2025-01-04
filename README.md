@@ -38,7 +38,7 @@ An Asteroid Tracker System allows users to monitor approaching asteroids by prov
 - GET "http:localhost:5000/get-asteroids" and json body {"start_date":"yyyy-mm-dd","end_date":"yyyy-mm-dd"}
 - POST "http://127.0.0.1:5000/create-schedule-message" and json body
      {
-        "phone_number": "+91 8547376353",
+        "phone_number": "your_phone_number",
         "date_time": "2025,1,5,10,00", 
         "id": "3704144"
      }
