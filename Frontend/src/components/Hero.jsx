@@ -4,10 +4,11 @@ import Asteroids from './Asteroids';
 
 
 const Hero = () => {
-    const [data, setData] = useState({});
+    const [data, setData] = useState(null);
 
   return (
     <>
+    <div className='flex justify-center items-center h-screen bg-[url("https://img.freepik.com/free-photo/galactic-night-sky-astronomy-science-combined-generative-ai_188544-9656.jpg?semt=ais_hybrid")] bg-cover bg-no-repeat bg-center'>
       {data ? (
         <div><Asteroids/>
         <Asteroids/>
@@ -15,8 +16,9 @@ const Hero = () => {
     )
       :
       (
-        <div className='flex justify-center items-center h-screen bg-[url("https://img.freepik.com/free-photo/galactic-night-sky-astronomy-science-combined-generative-ai_188544-9656.jpg?semt=ais_hybrid")] bg-cover bg-no-repeat bg-center'>
+      
   <div className="text-center p-6 bg-white bg-opacity-20 backdrop-blur-sm rounded-xl">
+        
   <h1 className="text-xl font-bold mb-4 text-white text-2xl">Enter the Dates to Check the Asteroid Sightings</h1>
   <form>
     <p>
@@ -32,9 +34,8 @@ const Hero = () => {
 </button>
   </form>
 </div>
-</div>
-
       )}
+</div>
     </>
   )
 }
