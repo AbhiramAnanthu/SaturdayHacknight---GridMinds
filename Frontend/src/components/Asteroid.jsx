@@ -8,6 +8,8 @@ const Asteroid = () => {
         </h1>
         <h1>Closest approach Date</h1>
         <h1>Speed</h1>
+        <h1>Click the button below to receive notifcation</h1>
+        <button></button>
       </p>
     </>
   )
