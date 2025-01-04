@@ -4,3 +4,4 @@ python-dotenv
 pymongo
 gunicorn
 twilio
+flask-cors
