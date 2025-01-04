@@ -4,7 +4,7 @@ import Asteroids from './Asteroids';
 
 
 const Hero = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState({});
 
   return (
     <>
