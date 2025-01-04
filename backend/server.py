@@ -37,10 +37,44 @@ def get_asteroids():
     for date, asteroids in response["near_earth_objects"].items():
         for asteroid in asteroids:
             asteroid_id = asteroid["id"]
+            asteroid_name = asteroid.get("name", "No description available")
+
+            # Estimated diameter (size)
+            diameter_min = asteroid["estimated_diameter"]["meters"][
+                "estimated_diameter_min"
+            ]
+            diameter_max = asteroid["estimated_diameter"]["meters"][
+                "estimated_diameter_max"
+            ]
+
+            # Check if asteroid is potentially hazardous
+            is_potentially_hazardous = asteroid.get(
+                "is_potentially_hazardous_asteroid", False
+            )
+            threat_level = (
+                "Potentially hazardous" if is_potentially_hazardous else "Not hazardous"
+            )
+
+            description = (
+                f"{asteroid_name} (ID: {asteroid_id}) is {threat_level}. "
+                f"It has an estimated diameter between {diameter_min:.2f} meters and {diameter_max:.2f} meters. "
+            )
+
             for approach in asteroid["close_approach_data"]:
                 approach_date_time = approach["close_approach_date_full"]
+                miss_distance_km = approach["miss_distance"]["kilometers"]
+                relative_velocity_kmh = approach["relative_velocity"][
+                    "kilometers_per_hour"
+                ]
+
+                # Append detailed description for each asteroid approach
                 asteroid_details.append(
-                    {"id": asteroid_id, "close_approach_date": approach_date_time}
+                    {
+                        "id": asteroid_id,
+                        "close_approach_date": approach_date_time,
+                        "name": asteroid_name,
+                        "description": f"{description} The asteroid will come within {miss_distance_km} kilometers of Earth at a speed of {relative_velocity_kmh} km/h.",
+                    }
                 )
 
     return jsonify(asteroid_details), 200
