@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import axios
 import Asteroids from './Asteroids';
 
 const Hero = () => {
@@ -27,10 +28,18 @@ const Hero = () => {
     const formattedEndDate = formatDate(formData.endDate);
 
     try {
-      const res = await fetch(`http://saturdayhacknight-gridminds.onrender.com/get-asteroids?start_date=${formattedStartDate}&end_date=${formattedEndDate}`);
-      const data = await res.json();
+      // Use axios for the API request
+      const res = await axios.get(`http://saturdayhacknight-gridminds.onrender.com/get-asteroids`, {
+        params: {
+          start_date: formattedStartDate,
+          end_date: formattedEndDate
+        }
+      });
+
+      const data = res.data;  // Accessing the response data directly
+
       console.log(data);
-      
+
       if (Array.isArray(data)) {
         setData(data);  // If data is an array, set the state
       } else {
