@@ -17,26 +17,27 @@ const Hero = () => {
     });
   };
 
-  const formatDate = (date) => {
+  /*const formatDate = (date) => {
     const [year, month, day] = date.split('/');
     return `${year}/${month}/${day}`;
-  };
+  };*/
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedStartDate = formatDate(formData.startDate);
-    const formattedEndDate = formatDate(formData.endDate);
+    //const formattedStartDate = formatDate(formData.startDate);
+    //const formattedEndDate = formatDate(formData.endDate);
 
     try {
       // Use axios for the API request
-      const res = await axios.get(`http://saturdayhacknight-gridminds.onrender.com/get-asteroids`, {
+      const res = await axios.get(`http://127.0.0.1:5000/get-asteroids`, {
         params: {
-          start_date: formattedStartDate,
-          end_date: formattedEndDate
+          start_date: formData.startDate,
+          end_date: formData.endDate
         }
       });
 
-      const data = res.data;  // Accessing the response data directly
+      const datas = await res.json;
+      setData(datas)  // Accessing the response data directly
 
       console.log(data);
 
