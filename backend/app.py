@@ -6,6 +6,7 @@ from message import schedule_messages
 import os
 import requests
 import json
+from flask_cors import CORS
 
 load_dotenv(dotenv_path=".env")
 
@@ -15,6 +16,8 @@ TWILIO_AUTH_TOKEN = os.getenv("AUTH_TOKEN")
 PHONE_NUMBER = os.getenv("PHONE_NUMBER")
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 
