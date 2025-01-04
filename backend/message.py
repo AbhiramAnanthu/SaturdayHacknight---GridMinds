@@ -3,9 +3,10 @@ from twilio.rest import Client
 from dotenv import load_dotenv
 import os
 
-load_dotenv(dotenv_path=".env")
+load_dotenv(dotenv_path="backend/.env")
 
 client = Client(os.getenv("ACCOUNT_SID"), os.getenv("AUTH_TOKEN"))
+
 PHONE_NUMBER = os.getenv("PHONE_NUMBER")
 
 
