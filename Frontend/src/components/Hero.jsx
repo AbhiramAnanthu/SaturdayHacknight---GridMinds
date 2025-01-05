@@ -33,7 +33,7 @@ const Hero = () => {
     }
     try {
       // Use axios for the API request
-      const res = await axios.post(`http://127.0.0.1:5000/get-asteroids`,Dates);
+      const res = await axios.post(`https://saturdayhacknight-gridminds.onrender.com/get-asteroids`,Dates);
       
       console.log(res.data);
       
