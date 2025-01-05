@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import axios
 import Asteroids from './Asteroids';
-
+import {Link} from 'react-router-dom'
 const Hero = () => {
   const [data, setData] = useState([]);
   const [formData, setFormData] = useState({
     startDate: '',
     endDate: ''
   });
+
+  const number = document.getElementById('number').value;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,11 +54,13 @@ const Hero = () => {
   return (
     <div className='flex justify-center items-center h-screen bg-[url("https://img.freepik.com/free-photo/galactic-night-sky-astronomy-science-combined-generative-ai_188544-9656.jpg?semt=ais_hybrid")] overflow-auto pt-[70px] bg-cover bg-no-repeat bg-center bg-fixed'>
       {data.length > 0 ? (
-        <div className='mt-[340px]'>
+        <div className='pt-[200px]'>
           <ul>
             {data.map((asteroid) => (
               <li key={asteroid.id}>
-                <Asteroids asteroid={asteroid} />
+                <Link to={`/asteroid/${asteroid.id}`} state={{asteroid, number}}>
+                <Asteroids asteroid={asteroid}/>
+                </Link>
               </li>
             ))}
           </ul>
@@ -87,6 +91,11 @@ const Hero = () => {
                 required
               />
             </p>
+            <p>
+            <label className="block mb-2 text-white">Enter Your mobile number:</label>
+            <input type="number" name='number' className="border px-4 py-2 rounded-lg" id='number' required/>
+            </p>
+            <h1 className='text-white'>*Mobile number needed for receiving asteroid sightings update</h1>
             <button
               className="border px-4 py-2 mt-4 rounded-xl bg-orange-600 text-white hover:bg-orange-700 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out"
               type="submit"
