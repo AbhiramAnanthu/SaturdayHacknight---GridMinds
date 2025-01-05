@@ -10,7 +10,7 @@ from flask_cors import CORS
 
 load_dotenv(dotenv_path=".env")
 
-API_KEY = "QSkCiJJewnmeZdU6zscPAyxCtTFO1X7NEesSrnmG"
+NASA_API_KEY = os.getenv("NASA_API_KEY")
 TWILIO_ACCOUNT_SID = os.getenv("ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("AUTH_TOKEN")
 PHONE_NUMBER = os.getenv("PHONE_NUMBER")
@@ -35,13 +35,10 @@ def get_asteroids():
 
     if not start_date or not end_date:
         return jsonify({"error": "Both 'start_date' and 'end_date' are required"}), 400
-    print(start_date)
-    print(end_date)
-    #url = f"https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={API_KEY}"
-    url = f"https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={API_KEY}" 
-    print(url)
+    # url = f"https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={API_KEY}"
+    url = f"https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={NASA_API_KEY}"
     response = requests.get(url)
-    
+
     if response.status_code != 200:
         return jsonify({"error": "Failed to fetch data from NASA API"}), 500
 
@@ -53,12 +50,20 @@ def get_asteroids():
         for asteroid in asteroids:
             asteroid_id = asteroid["id"]
             asteroid_name = asteroid.get("name", "No description available")
-            
-            diameter_min = asteroid["estimated_diameter"]["meters"]["estimated_diameter_min"]
-            diameter_max = asteroid["estimated_diameter"]["meters"]["estimated_diameter_max"]
 
-            is_potentially_hazardous = asteroid.get("is_potentially_hazardous_asteroid", False)
-            threat_level = "Potentially hazardous" if is_potentially_hazardous else "Not hazardous"
+            diameter_min = asteroid["estimated_diameter"]["meters"][
+                "estimated_diameter_min"
+            ]
+            diameter_max = asteroid["estimated_diameter"]["meters"][
+                "estimated_diameter_max"
+            ]
+
+            is_potentially_hazardous = asteroid.get(
+                "is_potentially_hazardous_asteroid", False
+            )
+            threat_level = (
+                "Potentially hazardous" if is_potentially_hazardous else "Not hazardous"
+            )
 
             description = (
                 f"{asteroid_name} (ID: {asteroid_id}) is {threat_level}. "
@@ -69,7 +74,9 @@ def get_asteroids():
             for approach in asteroid["close_approach_data"]:
                 approach_date_time = approach["close_approach_date_full"]
                 miss_distance_km = approach["miss_distance"]["kilometers"]
-                relative_velocity_kmh = approach["relative_velocity"]["kilometers_per_hour"]
+                relative_velocity_kmh = approach["relative_velocity"][
+                    "kilometers_per_hour"
+                ]
 
                 asteroid_details.append(
                     {
