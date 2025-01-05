@@ -27,22 +27,19 @@ const Hero = () => {
     //const formattedStartDate = formatDate(formData.startDate);
     //const formattedEndDate = formatDate(formData.endDate);
 
+    const Dates ={
+      start_date:formData.startDate,
+      end_date:formData.endDate
+    }
     try {
       // Use axios for the API request
-      const res = await axios.get(`http://127.0.0.1:5000/get-asteroids`, {
-        params: {
-          start_date: formData.startDate,
-          end_date: formData.endDate
-        }
-      });
-
-      const datas = await res.json;
-      setData(datas)  // Accessing the response data directly
-
-      console.log(data);
-
+      const res = await axios.post(`http://127.0.0.1:5000/get-asteroids`,Dates);
+      
+      console.log(res.data);
+      
+      setData(res.data)  // Accessing the response data directly
       if (Array.isArray(data)) {
-        setData(data);  // If data is an array, set the state
+        setData(res.data);  // If data is an array, set the state
       } else {
         console.error("Received data is not an array:", data);
         setData([]); // If the data is not an array, clear it
