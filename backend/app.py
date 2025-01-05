@@ -16,7 +16,10 @@ TWILIO_AUTH_TOKEN = os.getenv("AUTH_TOKEN")
 PHONE_NUMBER = os.getenv("PHONE_NUMBER")
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+CORS(
+    app,
+    resources={r"/*": {"origins": "https://saturday-hacknight-grid-minds.vercel.app"}},
+)
 
 client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
