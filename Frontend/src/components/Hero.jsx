@@ -6,10 +6,11 @@ const Hero = () => {
   const [data, setData] = useState([]);
   const [formData, setFormData] = useState({
     startDate: '',
-    endDate: ''
+    endDate: '',
+    number:''
   });
 
-  const number = document.getElementById('number').value;
+ // const number = document.getElementById('number').value;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +59,7 @@ const Hero = () => {
           <ul>
             {data.map((asteroid) => (
               <li key={asteroid.id}>
-                <Link to={`/asteroid/${asteroid.id}`} state={{asteroid, number}}>
+                <Link to={`/asteroid/${asteroid.id}`} state={{asteroid, number: formData.number}}>
                 <Asteroids asteroid={asteroid}/>
                 </Link>
               </li>
@@ -93,7 +94,7 @@ const Hero = () => {
             </p>
             <p>
             <label className="block mb-2 text-white">Enter Your mobile number:</label>
-            <input type="number" name='number' className="border px-4 py-2 rounded-lg" id='number' required/>
+            <input type="string" name='number' className="border px-4 py-2 rounded-lg" id='number' value={formData.number} onChange={handleChange} placeholder='+91 XXXXXXXXXX' required/>
             </p>
             <h1 className='text-white'>*Mobile number needed for receiving asteroid sightings update</h1>
             <button
