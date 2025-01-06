@@ -13,6 +13,8 @@ An Asteroid Tracker System allows users to monitor approaching asteroids by prov
 3. [Akshay M Nair](https://github.com/Mobing-ms)
 ## Link to product walkthrough
 [link to video](https://drive.google.com/file/d/1nLomZdrSqBXw3jwowBW1Bhv5bM7rXuvK/view?usp=sharing)
+## Deployed 
+[AstroNav](https://saturday-hacknight-grid-minds.vercel.app/)
 ## How it Works ?
 1. **User Input**: The user provides a starting and ending date through the website to define the time range for tracking asteroids.  
 
@@ -42,5 +44,3 @@ An Asteroid Tracker System allows users to monitor approaching asteroids by prov
         "date_time": "2025,1,5,10,00", 
         "id": "3704144"
      }
-## Deployed 
-[AstroNav](https://saturday-hacknight-grid-minds.vercel.app/)
